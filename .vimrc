@@ -41,6 +41,7 @@ call plug#end()
 " NERDTree
 nnoremap <Leader>n :NERDTreeToggle<cr>
 nnoremap <Leader>nt :NERDTreeFocus<cr>
+let NERDTreeShowHidden=1 " show hidden files
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'w' " start search from the cwd
@@ -60,7 +61,14 @@ let g:jsx_ext_required = 0 " Allow jsx syntax support in js files
 " custom leader mappings and settings
 " ------------------------------------------------------------------------------
 
-nnoremap <leader>sv :source ~/.vimrc<CR> " shortcut to source .vimrc
+nnoremap <leader>sv :source ~/.vimrc<cr> " shortcut to source .vimrc
+
+nnoremap <C-l> :nohlsearch<CR><C-l> " rm highlighting after searching
+autocmd InsertEnter * :setlocal nohlsearch " no highlighting in Insert mode
+autocmd InsertLeave * :setlocal hlsearch " enable highlight on Insert leave
+
+" easy shortcut to go to buffer
+nnoremap gb :ls<cr>:b<space>
 
 " Block cursor on NORMAL mode, thin cursor on INSERT mode
 if exists('$TMUX')
