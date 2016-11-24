@@ -26,9 +26,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'raimondi/delimitmate'
 Plug 'ajh17/vimcompletesme'
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'javascript.es6'] }
 Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'altercation/vim-colors-solarized'
 
@@ -56,6 +57,15 @@ let g:delimitMate_expand_cr = 2 " expands carriage returns and auto tabs
 
 " vim-jsx
 let g:jsx_ext_required = 0 " Allow jsx syntax support in js files
+
+" vim-go
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
