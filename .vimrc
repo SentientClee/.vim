@@ -15,8 +15,7 @@ let mapleader = "\<Space>" " map leader key to space
 " Set up vim-plug for vim plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -26,7 +25,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'raimondi/delimitmate'
 Plug 'ajh17/vimcompletesme'
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'javascript.es6'] }
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
@@ -39,27 +38,25 @@ call plug#end()
 " plugin variables and settings
 " ------------------------------------------------------------------------------
 
-" NERDTree
-nnoremap <Leader>n :NERDTreeToggle<cr>
-nnoremap <Leader>nt :NERDTreeFocus<cr>
-let NERDTreeShowHidden=1 " show hidden files
-
 " CtrlP
 let g:ctrlp_working_path_mode = 'w' " start search from the cwd
 let g:ctrlp_root_markers = ['package.json', 'marathon.json', '.ci.sh']
 let g:ctrlp_show_hidden = 1         " show hidden dot files
 let g:ctrlp_follow_symlinks = 1     " show symlink files
+let g:ctrlp_custom_ignore = 'node_modules\|build'
 
 " delimitMate
 " <S-Tab> will jump over a single closing delimiter or quote, <C-G>g will jump
 " over contiguous delimiters and/or quotes.
 let g:delimitMate_expand_cr = 2 " expands carriage returns and auto tabs
 
+" vim-javascript
+let g:javascript_plugin_flow = 1 " enable syntax highlighting for flow
+
 " vim-jsx
 let g:jsx_ext_required = 0 " Allow jsx syntax support in js files
 
 " vim-go
-
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
