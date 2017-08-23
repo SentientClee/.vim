@@ -97,11 +97,7 @@ let s:plug_tab = get(s:, 'plug_tab', -1)
 let s:plug_buf = get(s:, 'plug_buf', -1)
 let s:mac_gui = has('gui_macvim') && has('gui_running')
 let s:is_win = has('win32') || has('win64')
-<<<<<<< HEAD
 let s:nvim = has('nvim-0.2') || (has('nvim') && exists('*jobwait') && !s:is_win)
-=======
-let s:nvim = has('nvim') && exists('*jobwait') && !s:is_win
->>>>>>> df920cfccf336edd97a5dc5e73751c67e4e6b353
 let s:vim8 = has('patch-8.0.0039') && exists('*job_start')
 let s:me = resolve(expand('<sfile>:p'))
 let s:base_spec = { 'branch': 'master', 'frozen': 0 }
@@ -1878,7 +1874,6 @@ function! s:update_ruby()
   main = Thread.current
   threads = []
   watcher = Thread.new {
-<<<<<<< HEAD
     if vim7
       while VIM::evaluate('getchar(1)')
         sleep 0.1
@@ -1887,10 +1882,6 @@ function! s:update_ruby()
       require 'io/console' # >= Ruby 1.9
       nil until IO.console.getch == 3.chr
     end
-=======
-    require 'io/console' # >= Ruby 1.9
-    nil until IO.console.getch == 3.chr
->>>>>>> df920cfccf336edd97a5dc5e73751c67e4e6b353
     mtx.synchronize do
       running = false
       threads.each { |t| t.raise Interrupt } unless vim7
