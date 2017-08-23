@@ -64,6 +64,11 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+" vim-colors-solarized
+if has("unix")
+  let g:solarized_termcolors=256
+endif
+
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
 " ------------------------------------------------------------------------------
