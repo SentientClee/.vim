@@ -67,6 +67,10 @@ let g:go_highlight_build_constraints = 1
 " vim-colors-solarized
 if has("unix")
   let g:solarized_termcolors=256
+
+  if has("macunix") " For correct colorscheme on vim for OS-X
+    let g:solarized_termcolors=16 " Set to 16 if using solarized in iTerm2
+  endif
 endif
 
 " ------------------------------------------------------------------------------
