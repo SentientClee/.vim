@@ -5,7 +5,7 @@
 " ------------------------------------------------------------------------------
 
 filetype plugin indent on  " turn on filetype detection, plugins, and indent
-syntax enable                  " turn on syntax highlighting
+syntax enable              " turn on syntax highlighting
 let mapleader = "\<Space>" " map leader key to space
 
 " ------------------------------------------------------------------------------
