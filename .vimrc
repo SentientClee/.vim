@@ -31,6 +31,7 @@ Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'altercation/vim-colors-solarized'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -128,9 +129,9 @@ set noshowmode " don't display current mode in status line with airline
 " editing text
 " ------------------------------------------------------------------------------
 
-set backspace=2       " make backspace work like most other apps
-set showmatch         " highlight matching [{()}]
-set clipboard=unnamed " allows use of the system clipboard
+set backspace=2           " make backspace work like most other apps
+set showmatch             " highlight matching [{()}]
+set clipboard=unnamed     " allows use of the system clipboard
 
 " ------------------------------------------------------------------------------
 " tabs and indenting
