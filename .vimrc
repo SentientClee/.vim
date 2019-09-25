@@ -141,6 +141,7 @@ set tabstop=2     " number of visual spaces per TAB
 set shiftwidth=2  " autoindent indents 2 spaces
 set softtabstop=2 " number of spaces in tab when editing
 set expandtab     " tabs are spaces
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 " Go specific
 
 " ------------------------------------------------------------------------------
 " reading and writing files
