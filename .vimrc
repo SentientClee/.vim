@@ -32,6 +32,7 @@ Plug 'fatih/vim-go'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'altercation/vim-colors-solarized'
 Plug 'leafgarland/typescript-vim'
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
