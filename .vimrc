@@ -22,7 +22,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'airblade/vim-gitgutter'
 Plug 'raimondi/delimitmate'
 Plug 'ajh17/vimcompletesme'
 Plug 'pangloss/vim-javascript'
@@ -31,6 +30,8 @@ Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'altercation/vim-colors-solarized'
+Plug 'rhysd/vim-clang-format'
+Plug 'prettier/vim-prettier'
 
 call plug#end()
 
@@ -128,9 +129,9 @@ set noshowmode " don't display current mode in status line with airline
 " editing text
 " ------------------------------------------------------------------------------
 
-set backspace=2       " make backspace work like most other apps
-set showmatch         " highlight matching [{()}]
-set clipboard=unnamed " allows use of the system clipboard
+set backspace=2           " make backspace work like most other apps
+set showmatch             " highlight matching [{()}]
+set clipboard=unnamedplus " allows use of the system clipboard
 
 " ------------------------------------------------------------------------------
 " tabs and indenting
