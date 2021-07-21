@@ -34,6 +34,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'prettier/vim-prettier'
 Plug 'leafgarland/typescript-vim'
 Plug 'mileszs/ack.vim'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -133,7 +134,6 @@ set noshowmode " don't display current mode in status line with airline
 
 set backspace=2           " make backspace work like most other apps
 set showmatch             " highlight matching [{()}]
-set clipboard=unnamedplus " allows use of the system clipboard
 
 " ------------------------------------------------------------------------------
 " tabs and indenting
