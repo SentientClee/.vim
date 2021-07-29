@@ -35,6 +35,7 @@ Plug 'prettier/vim-prettier'
 Plug 'leafgarland/typescript-vim'
 Plug 'mileszs/ack.vim'
 Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8'
 
 call plug#end()
 
@@ -67,6 +68,10 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" vim-flake8 (python)
+" Call flake8 for syntax and style checking on save
+autocmd BufWritePost *.py call flake8#Flake8()
 
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
