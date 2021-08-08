@@ -76,6 +76,9 @@ autocmd BufWritePost *.py call flake8#Flake8()
 " psf/black (python) - Auto formatting on save
 autocmd BufWritePre *.py execute ':Black'
 
+" vim-prettier
+autocmd BufWritePre *.js execute ':Prettier'
+
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
 " ------------------------------------------------------------------------------
