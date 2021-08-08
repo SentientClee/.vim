@@ -36,6 +36,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'mileszs/ack.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
+Plug 'psf/black'
 
 call plug#end()
 
@@ -69,9 +70,11 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" vim-flake8 (python)
-" Call flake8 for syntax and style checking on save
+" vim-flake8 (python) - Call flake8 for syntax and style checking on save
 autocmd BufWritePost *.py call flake8#Flake8()
+
+" psf/black (python) - Auto formatting on save
+autocmd BufWritePre *.py execute ':Black'
 
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
@@ -94,6 +97,9 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+" django html template formatting
+autocmd Filetype htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 
 " ------------------------------------------------------------------------------
 " moving around, searching and patterns
