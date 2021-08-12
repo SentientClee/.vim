@@ -30,6 +30,7 @@ Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-clang-format'
 Plug 'prettier/vim-prettier'
 Plug 'leafgarland/typescript-vim'
@@ -37,6 +38,7 @@ Plug 'mileszs/ack.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'psf/black'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -128,7 +130,7 @@ set background=dark " background color brightness
 set hlsearch        " highlight all matches for last used search pattern
 set cursorline      " highlight the screen line of the cursor
 set colorcolumn=80  " display a line in column 80 to show cutoff
-colorscheme solarized
+colorscheme gruvbox
 
 " ------------------------------------------------------------------------------
 " multiple windows
