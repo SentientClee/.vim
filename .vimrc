@@ -39,7 +39,6 @@ Plug 'mileszs/ack.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'psf/black'
-Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -49,7 +48,6 @@ call plug#end()
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'w' " start search from the cwd
-let g:ctrlp_root_markers = ['package.json', 'marathon.json', '.ci.sh']
 let g:ctrlp_show_hidden = 1         " show hidden dot files
 let g:ctrlp_follow_symlinks = 1     " show symlink files
 let g:ctrlp_custom_ignore = 'node_modules\|build'
@@ -104,9 +102,6 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" django html template formatting
-autocmd Filetype htmldjango setlocal ts=2 sts=2 sw=2 expandtab
-
 " ------------------------------------------------------------------------------
 " moving around, searching and patterns
 " ------------------------------------------------------------------------------
@@ -120,6 +115,7 @@ set smartcase     " override 'ignorecase' when pattern has uppercase characters
 " displaying text
 " ------------------------------------------------------------------------------
 
+set guifont=Menlo:h12
 set scrolloff=3   " number of screen lines to show around cursor
 set number        " show the line number for each line
 
@@ -160,7 +156,8 @@ set tabstop=2     " number of visual spaces per TAB
 set shiftwidth=2  " autoindent indents 2 spaces
 set softtabstop=2 " number of spaces in tab when editing
 set expandtab     " tabs are spaces
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 " Go specific
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 " Go
+autocmd Filetype htmldjango setlocal ts=2 sts=2 sw=2 expandtab " Django
 
 " ------------------------------------------------------------------------------
 " reading and writing files
