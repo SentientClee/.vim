@@ -12,32 +12,55 @@ let mapleader = "\<Space>" " map leader key to space
 " Vim package manager
 " ------------------------------------------------------------------------------
 
-" Set up vim-plug for vim plugins
 call plug#begin('~/.vim/plugged')
 
+" *** General Plugins ***
+" netrw file/folder navigation shortcuts
 Plug 'tpope/vim-vinegar'
+" allows plugin support for the . command
 Plug 'tpope/vim-repeat'
+" mappings to easily delete, change and add such surroundings in pairs
 Plug 'tpope/vim-surround'
+" Git
 Plug 'tpope/vim-fugitive'
+" awesome comment mappings gc and gcc
 Plug 'tpope/vim-commentary'
+" +/-/~ symbols for Git changes in side gutter
 Plug 'airblade/vim-gitgutter'
+" fuzzy file search
 Plug 'ctrlpvim/ctrlp.vim'
+" status/tabline
 Plug 'vim-airline/vim-airline'
-Plug 'raimondi/delimitmate'
-Plug 'ajh17/vimcompletesme'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
+" autocompleting pairs ({[]})
+Plug 'jiangmiao/auto-pairs'
+" highlights trailing whitespace characters
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
-Plug 'rhysd/vim-clang-format'
-Plug 'prettier/vim-prettier'
-Plug 'leafgarland/typescript-vim'
+" search through files
 Plug 'mileszs/ack.vim'
+" colorscheme
+Plug 'morhetz/gruvbox'
+
+" *** JavaScript/TypeScript ***
+" syntax highlighting
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
+" *** JSON ***
+Plug 'elzr/vim-json'
+
+" *** Golang ***
+Plug 'fatih/vim-go'
+
+" *** C ***
+Plug 'rhysd/vim-clang-format'
+
+" *** Python ***
+" autocomplete
 Plug 'davidhalter/jedi-vim'
+" style linting
 Plug 'nvie/vim-flake8'
+" style formatting
 Plug 'psf/black'
 
 call plug#end()
@@ -52,17 +75,6 @@ let g:ctrlp_show_hidden = 1         " show hidden dot files
 let g:ctrlp_follow_symlinks = 1     " show symlink files
 let g:ctrlp_custom_ignore = 'node_modules\|build'
 
-" delimitMate
-" <S-Tab> will jump over a single closing delimiter or quote, <C-G>g will jump
-" over contiguous delimiters and/or quotes.
-let g:delimitMate_expand_cr = 2 " expands carriage returns and auto tabs
-
-" vim-javascript
-let g:javascript_plugin_flow = 1 " enable syntax highlighting for flow
-
-" vim-jsx
-let g:jsx_ext_required = 0 " Allow jsx syntax support in js files
-
 " vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -76,9 +88,6 @@ autocmd BufWritePost *.py call flake8#Flake8()
 
 " psf/black (python) - Auto formatting on save
 autocmd BufWritePre *.py execute ':Black'
-
-" vim-prettier
-autocmd BufWritePre *.js execute ':Prettier'
 
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
