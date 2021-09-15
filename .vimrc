@@ -67,7 +67,7 @@ colorscheme gruvbox
 let g:ctrlp_working_path_mode = 'w' " start search from the cwd
 let g:ctrlp_show_hidden = 1         " show hidden dot files
 let g:ctrlp_follow_symlinks = 1     " show symlink files
-let g:ctrlp_custom_ignore = 'node_modules\|build'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " vim-go
 let g:go_highlight_functions = 1
@@ -246,7 +246,9 @@ set updatetime=300 " shorter updatetime for better user experience (CoC)
 " ------------------------------------------------------------------------------
 
 set wildmenu " visual autocomplete for command menu
-set wildignore+=*.swp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+
 
 " ------------------------------------------------------------------------------
 " 25. multi-byte characters
