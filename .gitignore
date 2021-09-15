@@ -3,3 +3,4 @@ plugged
 autoload
 colors
 black
+coc-settings.json

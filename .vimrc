@@ -1,7 +1,5 @@
 " ------------------------------------------------------------------------------
 " Chris2.0 Vim Setup
-" These settings are organized according to the layout visible when running
-" the :options command.
 " ------------------------------------------------------------------------------
 
 filetype plugin indent on  " turn on filetype detection, plugins, and indent
@@ -32,7 +30,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 " status/tabline
 Plug 'vim-airline/vim-airline'
 " autocompleting pairs ({[]})
-Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 " highlights trailing whitespace characters
 Plug 'ntpeters/vim-better-whitespace'
 " search through files
@@ -47,27 +45,23 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 
 " *** JSON ***
+" syntax highlighting
 Plug 'elzr/vim-json'
 
 " *** Golang ***
 Plug 'fatih/vim-go'
 
-" *** C ***
-Plug 'rhysd/vim-clang-format'
-
-" *** Python ***
-" autocomplete
-Plug 'davidhalter/jedi-vim'
-" style linting
-Plug 'nvie/vim-flake8'
-" style formatting
-Plug 'psf/black'
+" Intellisense
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
 " ------------------------------------------------------------------------------
 " plugin variables and settings
 " ------------------------------------------------------------------------------
+
+" gruvbox (colorscheme)
+colorscheme gruvbox
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'w' " start search from the cwd
@@ -83,11 +77,62 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" vim-flake8 (python) - Call flake8 for syntax and style checking on save
-autocmd BufWritePost *.py call flake8#Flake8()
+" ***********
+" *** CoC ***
+" ***********
 
-" psf/black (python) - Auto formatting on save
-autocmd BufWritePre *.py execute ':Black'
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" autoformat ts,tsx,python imports
+autocmd BufWritePre *.tsx,*.ts :silent call CocAction('runCommand', 'tsserver.organizeImports')
+autocmd BufWritePre *.py :silent call CocAction('runCommand', 'python.sortImports')
 
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
@@ -103,16 +148,18 @@ autocmd InsertLeave * :setlocal hlsearch " enable highlight on Insert leave
 nnoremap gb :ls<cr>:b<space>
 
 " Block cursor on NORMAL mode, thin cursor on INSERT mode
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " ------------------------------------------------------------------------------
-" moving around, searching and patterns
+" *** SETTINGS ***
+"
+" These settings are organized according to the layout visible when running
+" the :options command.
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" 2. moving around, searching and patterns
 " ------------------------------------------------------------------------------
 
 set nostartofline " keep cursor in same column for long-range motion cmds
@@ -121,44 +168,50 @@ set ignorecase    " ignore case when using a search pattern
 set smartcase     " override 'ignorecase' when pattern has uppercase characters
 
 " ------------------------------------------------------------------------------
-" displaying text
+" 4. displaying text
 " ------------------------------------------------------------------------------
 
-set guifont=Menlo:h12
 set scrolloff=3   " number of screen lines to show around cursor
 set number        " show the line number for each line
+set cmdheight=2   " give more space for displaying messages
 
 " ------------------------------------------------------------------------------
-" syntax, highlighting and spelling
+" 5. syntax, highlighting and spelling
 " ------------------------------------------------------------------------------
 
 set background=dark " background color brightness
 set hlsearch        " highlight all matches for last used search pattern
 set cursorline      " highlight the screen line of the cursor
 set colorcolumn=80  " display a line in column 80 to show cutoff
-colorscheme gruvbox
 
 " ------------------------------------------------------------------------------
-" multiple windows
+" 6. multiple windows
 " ------------------------------------------------------------------------------
 
 set laststatus=2 " show a status line even if only one vim window
-
-" ------------------------------------------------------------------------------
-" multiple windows
-" ------------------------------------------------------------------------------
-
 set noshowmode " don't display current mode in status line with airline
 
 " ------------------------------------------------------------------------------
-" editing text
+" 10. GUI
+" ------------------------------------------------------------------------------
+
+set guifont=Menlo:h12
+
+" ------------------------------------------------------------------------------
+" 12. messages and info
+" ------------------------------------------------------------------------------
+
+set shortmess+=c " don't pass messages to ins-completion-menu
+
+" ------------------------------------------------------------------------------
+" 14. editing text
 " ------------------------------------------------------------------------------
 
 set backspace=2           " make backspace work like most other apps
 set showmatch             " highlight matching [{()}]
 
 " ------------------------------------------------------------------------------
-" tabs and indenting
+" 15. tabs and indenting
 " ------------------------------------------------------------------------------
 
 set tabstop=2     " number of visual spaces per TAB
@@ -169,33 +222,34 @@ autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 " Go
 autocmd Filetype htmldjango setlocal ts=2 sts=2 sw=2 expandtab " Django
 
 " ------------------------------------------------------------------------------
-" reading and writing files
-" ------------------------------------------------------------------------------
-
-set nobackup " don't keep a backup after overwriting a file
-
-" ------------------------------------------------------------------------------
-" mapping
+" 18. mapping
 " ------------------------------------------------------------------------------
 
 set timeoutlen=1000 ttimeoutlen=0 " eliminate delays when changing modes
 
 " ------------------------------------------------------------------------------
-" the swap file
+" 19. reading and writing files
+" ------------------------------------------------------------------------------
+
+set nobackup " don't keep a backup after overwriting a file
+set nowritebackup " don't write a backup file before overwriting a file
+
+" ------------------------------------------------------------------------------
+" 20. the swap file
 " ------------------------------------------------------------------------------
 
 set noswapfile " don't create any swap files when editing a buffer
+set updatetime=300 " shorter updatetime for better user experience (CoC)
 
 " ------------------------------------------------------------------------------
-" command line editing
+" 22. command line editing
 " ------------------------------------------------------------------------------
 
 set wildmenu " visual autocomplete for command menu
 set wildignore+=*.swp
 
 " ------------------------------------------------------------------------------
-" multi-byte characters
+" 25. multi-byte characters
 " ------------------------------------------------------------------------------
 
 set encoding=utf-8 " character encoding used in Vim
-
