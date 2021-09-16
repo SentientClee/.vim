@@ -128,6 +128,9 @@ nmap <leader>rn <Plug>(coc-rename)
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 " autoformat ts,tsx,python imports
 autocmd BufWritePre *.tsx,*.ts :silent call CocAction('runCommand', 'tsserver.organizeImports')
 autocmd BufWritePre *.py :silent call CocAction('runCommand', 'python.sortImports')
