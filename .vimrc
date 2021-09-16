@@ -29,8 +29,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 " status/tabline
 Plug 'vim-airline/vim-airline'
-" autocompleting pairs ({[]})
-Plug 'tmsvg/pear-tree'
 " highlights trailing whitespace characters
 Plug 'ntpeters/vim-better-whitespace'
 " search through files
