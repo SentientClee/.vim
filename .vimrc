@@ -249,8 +249,6 @@ set updatetime=300 " shorter updatetime for better user experience (CoC)
 set wildmenu " visual autocomplete for command menu
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-
-
 " ------------------------------------------------------------------------------
 " 25. multi-byte characters
 " ------------------------------------------------------------------------------
