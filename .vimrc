@@ -160,6 +160,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " autoformat python imports
 autocmd BufWritePre *.py :silent call CocAction('runCommand', 'python.sortImports')
 
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+
 " ------------------------------------------------------------------------------
 " custom leader mappings and settings
 " ------------------------------------------------------------------------------
