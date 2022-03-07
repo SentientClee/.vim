@@ -1,2 +1,15 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "css",
+    "json"
+  ],
+  "python.linting.mypyEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "pyright.disableDiagnostics": true,
+  "python.formatting.provider": "black",
+  "python.sortImports.path": "isort"
 }
