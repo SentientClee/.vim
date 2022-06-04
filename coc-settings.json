@@ -1,4 +1,5 @@
 {
+  "diagnostic.checkCurrentLine": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
@@ -12,5 +13,13 @@
   "python.linting.flake8Enabled": true,
   "pyright.disableDiagnostics": true,
   "python.formatting.provider": "black",
-  "pyright.organizeimports.provider": "isort"
+  "pyright.organizeimports.provider": "isort",
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": { "staticcheck": true }
+    }
+  }
 }
